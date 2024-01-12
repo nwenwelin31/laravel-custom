@@ -53,7 +53,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        $student=Student::findOrFail($id);
+        return view('student.detail',compact('student'));
     }
 
     /**
@@ -83,7 +84,7 @@ class StudentController extends Controller
         $student->email = $request->email;
         $student->age = $request->age;
         $student->update();
-        return redirect()->route('student.index');
+        return redirect()->route('student.index',compact('student'));
     }
 
     /**
